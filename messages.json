@@ -1,0 +1,6 @@
+[
+  {"sender": "user", "text": "I'm feeling really low today"},
+  {"sender": "assistant", "text": "I'm here to listen. Can you tell me more?"},
+  {"sender": "user", "text": "Sometimes I think about ending it"},
+  {"sender": "user", "text": "Other days are okay though"}
+]

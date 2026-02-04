@@ -1,0 +1,14 @@
+[
+    {
+        "sender": "user",
+        "text": "How’s the weather on Grouse today?"
+    },
+    {
+        "sender": "assistant",
+        "text": "Sunny and clear — perfect hiking weather."
+    },
+    {
+        "sender": "user",
+        "text": "Amazing, I might head up BCMC later."
+    }
+]
