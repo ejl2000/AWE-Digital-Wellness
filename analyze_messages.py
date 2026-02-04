@@ -5,6 +5,7 @@ FLAG_PHRASES = [
     "suicide",
     "kill myself",
     "end it",
+    "ending it",
     "ending it all",
     "take my life",
 ]
