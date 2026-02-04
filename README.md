@@ -43,7 +43,7 @@ These phrases are defined in the script and can be modified as needed.
 python analyze_messages.py messages.json
 ```
 
-You will see output similar to:
+You will see the output: 
 
 ```json
 {
