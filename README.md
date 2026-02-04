@@ -21,6 +21,7 @@ The `needs_human_review` flag becomes **true** if any user message contains one 
 - “suicide”
 - “kill myself”
 - “end it”
+- "ending it"
 - “ending it all”
 - “take my life”
 
