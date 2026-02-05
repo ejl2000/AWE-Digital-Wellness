@@ -1,27 +1,27 @@
 import json
 import sys
+import re
 
-FLAG_PHRASES = [
-    "suicide",
-    "kill myself",
-    "end it",
-    "ending it",
-    "ending it all",
-    "take my life",
+FLAG_PATTERNS = [
+    r"\bsuicide\b",
+    r"\bkill myself\b",
+    r"\bend(ing)? it(\sall)?\b",
+    r"\btake my life\b",
 ]
+
+def contains_flag(text):
+    text = text.lower()
+    return any(re.search(pattern, text) for pattern in FLAG_PATTERNS)
 
 def analyze_messages(messages):
     total = len(messages)
     user_count = sum(1 for m in messages if m.get("sender") == "user")
     assistant_count = sum(1 for m in messages if m.get("sender") == "assistant")
 
-    needs_review = False
-    for m in messages:
-        if m.get("sender") == "user":
-            text = m.get("text", "").lower()
-            if any(phrase in text for phrase in FLAG_PHRASES):
-                needs_review = True
-                break
+    needs_review = any(
+        m.get("sender") == "user" and contains_flag(m.get("text", ""))
+        for m in messages
+    )
 
     return {
         "total_messages": total,
@@ -35,8 +35,14 @@ if __name__ == "__main__":
         print("Usage: python analyze_messages.py messages.json")
         sys.exit(1)
 
-    with open(sys.argv[1], "r") as f:
-        data = json.load(f)
+    try:
+        with open(sys.argv[1], "r") as f:
+            data = json.load(f)
+        if not isinstance(data, list):
+            raise ValueError("JSON must be a list of messages.")
+    except Exception as e:
+        print(f"Error loading JSON: {e}")
+        sys.exit(1)
 
     results = analyze_messages(data)
     print(json.dumps(results, indent=2))
